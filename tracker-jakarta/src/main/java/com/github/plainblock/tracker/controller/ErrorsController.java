@@ -1,16 +1,14 @@
 package com.github.plainblock.tracker.controller;
 
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.boot.web.servlet.error.ErrorController;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import jakarta.ws.rs.Path;
 
-@Controller
-@RequestMapping("${server.error.path:${error.path:/error}}")
-public class ErrorsController implements ErrorController {
+@RequestScoped
+//@Path("${server.error.path:${error.path:/error}}")
+public class ErrorsController {
 
-    @RequestMapping
     public String renderError(HttpServletRequest request) {
         Object statusCode = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         if (statusCode != null && statusCode.toString().equals("404")) {
