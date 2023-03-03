@@ -18,6 +18,10 @@
         <version.maven.compiler>3.11.0</version.maven.compiler>
         <version.maven.war>3.3.2</version.maven.war>
         <version.jakartaee>10.0.0</version.jakartaee>
+        <version.jakarta.faces>4.0.1</version.jakarta.faces>
+        <version.jakarta.mvc>2.1.0</version.jakarta.mvc>
+        <version.glassfish>4.0.1</version.glassfish>
+        <version.krazo>3.0.1</version.krazo>
         <version.slf4j>2.0.6</version.slf4j>
         <version.wildfly>27.0.1.Final</version.wildfly>
     </properties>
@@ -28,6 +32,31 @@
             <artifactId>jakarta.jakartaee-api</artifactId>
             <version>${version.jakartaee}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.faces</groupId>
+            <artifactId>jakarta.faces-api</artifactId>
+            <version>${version.jakarta.faces}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.mvc</groupId>
+            <artifactId>jakarta.mvc-api</artifactId>
+            <version>${version.jakarta.mvc}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.faces</artifactId>
+            <version>${version.glassfish}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.krazo</groupId>
+            <artifactId>krazo-core</artifactId>
+            <version>${version.krazo}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.krazo</groupId>
+            <artifactId>krazo-resteasy</artifactId>
+            <version>${version.krazo}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
