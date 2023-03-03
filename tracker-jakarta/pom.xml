@@ -7,6 +7,7 @@
     <groupId>com.github.plainblock</groupId>
     <artifactId>tracker-jakarta</artifactId>
     <version>1.0.0</version>
+    <packaging>war</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
