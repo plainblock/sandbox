@@ -1,6 +1,6 @@
-package com.github.plainblock.tracker.api.constant;
+package com.github.plainblock.tracker.constant;
 
-public class Endpoint {
+public class ApiEndpoint {
 
     private static final String BASE = "/api/v1";
 

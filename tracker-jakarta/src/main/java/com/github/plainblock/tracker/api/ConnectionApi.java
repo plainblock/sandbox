@@ -13,13 +13,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-import com.github.plainblock.tracker.api.constant.Endpoint;
+import com.github.plainblock.tracker.constant.ApiEndpoint;
 import com.github.plainblock.tracker.usecase.ConnectionUsecase;
 import com.github.plainblock.tracker.usecase.input.ConnectionInput;
 import com.github.plainblock.tracker.usecase.output.ConnectionOutput;
 import com.github.plainblock.tracker.util.*;
 
-@Path(Endpoint.CONNECTION)
+@Path(ApiEndpoint.CONNECTION)
 @Produces(MediaType.APPLICATION_JSON)
 public class ConnectionApi {
 
@@ -30,7 +30,7 @@ public class ConnectionApi {
 
     @GET
     public Response fetchConnectionStatus(@QueryParam("host") String host) {
-        LogUtil.loggingRequest(LOGGER, HttpMethod.GET, Endpoint.CONNECTION, Map.of("host", TextUtil.requireNonNull(host)));
+        LogUtil.loggingRequest(LOGGER, HttpMethod.GET, ApiEndpoint.CONNECTION, Map.of("host", TextUtil.requireNonNull(host)));
         ConnectionInput input = new ConnectionInput(host);
         ConnectionOutput output = usecase.verifyConnection(input);
         return Response.ok(output).build();

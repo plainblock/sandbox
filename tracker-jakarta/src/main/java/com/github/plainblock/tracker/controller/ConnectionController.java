@@ -5,7 +5,9 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
-@Path("/public/status/connection")
+import com.github.plainblock.tracker.constant.WebEndpoint;
+
+@Path(WebEndpoint.CONNECTION)
 public class ConnectionController {
 
     @GET

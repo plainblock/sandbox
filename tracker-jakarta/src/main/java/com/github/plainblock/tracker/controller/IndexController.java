@@ -6,7 +6,9 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/public/web/top")
+import com.github.plainblock.tracker.constant.WebEndpoint;
+
+@Path(WebEndpoint.TOP)
 public class IndexController {
 
     @GET
