@@ -5,7 +5,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.ws.rs.Path;
 
-@RequestScoped
+//@RequestScoped
 //@Path("${server.error.path:${error.path:/error}}")
 public class ErrorsController {
 

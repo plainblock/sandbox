@@ -1,6 +1,5 @@
 package com.github.plainblock.tracker.api;
 
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -14,7 +13,7 @@ import com.github.plainblock.tracker.usecase.input.ConnectionInput;
 import com.github.plainblock.tracker.usecase.output.ConnectionOutput;
 import com.github.plainblock.tracker.util.LogUtil;
 
-@RequestScoped
+@Path("/api/v1/connections")
 public class ConnectionApi {
 
 //    private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionApi.class);
@@ -27,7 +26,6 @@ public class ConnectionApi {
     }
 
     @GET
-    @Path("/api/v1/connections")
     @Produces(MediaType.APPLICATION_JSON)
     public Response fetchConnectionStatus(@QueryParam("host") String host) {
 //        LogUtil.loggingRequest(LOGGER, request);

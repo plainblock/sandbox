@@ -1,5 +1,6 @@
 package com.github.plainblock.tracker.usecase;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 
 import com.github.plainblock.tracker.domain.model.ConnectionStatus;
@@ -7,6 +8,7 @@ import com.github.plainblock.tracker.domain.repository.ConnectionRepository;
 import com.github.plainblock.tracker.usecase.input.ConnectionInput;
 import com.github.plainblock.tracker.usecase.output.ConnectionOutput;
 
+@Dependent
 public class ConnectionUsecase {
 
     private final ConnectionRepository repository;

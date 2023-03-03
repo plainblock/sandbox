@@ -1,11 +1,14 @@
 package com.github.plainblock.tracker.infra.ping;
 
+import jakarta.enterprise.context.Dependent;
+
 import java.io.IOException;
 import java.net.InetAddress;
 
 import com.github.plainblock.tracker.domain.model.ConnectionStatus;
 import com.github.plainblock.tracker.domain.repository.ConnectionRepository;
 
+@Dependent
 public class PingRepository implements ConnectionRepository {
 
 //    private static final Logger LOGGER = LoggerFactory.getLogger(PingRepository.class);
