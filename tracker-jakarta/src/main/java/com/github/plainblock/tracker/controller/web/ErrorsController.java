@@ -1,4 +1,4 @@
-package com.github.plainblock.tracker.controller;
+package com.github.plainblock.tracker.controller.web;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;

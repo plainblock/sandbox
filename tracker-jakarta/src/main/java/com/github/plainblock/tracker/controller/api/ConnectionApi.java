@@ -1,4 +1,4 @@
-package com.github.plainblock.tracker.api;
+package com.github.plainblock.tracker.controller.api;
 
 import jakarta.inject.Inject;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,7 +12,7 @@ import jakarta.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.plainblock.tracker.constant.ApiEndpoint;
+import com.github.plainblock.tracker.controller.constant.ApiEndpoint;
 import com.github.plainblock.tracker.usecase.ConnectionUsecase;
 import com.github.plainblock.tracker.usecase.input.ConnectionInput;
 import com.github.plainblock.tracker.usecase.output.ConnectionOutput;

@@ -1,4 +1,4 @@
-package com.github.plainblock.tracker.constant;
+package com.github.plainblock.tracker.controller.constant;
 
 public class WebEndpoint {
 
