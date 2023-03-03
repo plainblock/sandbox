@@ -18,12 +18,8 @@ public class ConnectionApi {
 
 //    private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionApi.class);
 
-    private final ConnectionUsecase usecase;
-
     @Inject
-    public ConnectionApi(ConnectionUsecase usecase) {
-        this.usecase = usecase;
-    }
+    private ConnectionUsecase usecase;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
