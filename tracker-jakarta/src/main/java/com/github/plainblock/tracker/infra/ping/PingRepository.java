@@ -1,6 +1,8 @@
 package com.github.plainblock.tracker.infra.ping;
 
 import jakarta.enterprise.context.Dependent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -11,7 +13,7 @@ import com.github.plainblock.tracker.domain.repository.ConnectionRepository;
 @Dependent
 public class PingRepository implements ConnectionRepository {
 
-//    private static final Logger LOGGER = LoggerFactory.getLogger(PingRepository.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PingRepository.class);
     private static final String LOOPBACK = "127.0.0.1";
     private static final int TIMEOUT = 5000;
 
@@ -34,8 +36,7 @@ public class PingRepository implements ConnectionRepository {
             boolean reachable = inetAddress.isReachable(timeout);
             return new ConnectionStatus(address, name, reachable);
         } catch (IOException e) {
-            e.printStackTrace();
-//            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage());
             return ConnectionStatus.empty();
         }
     }
