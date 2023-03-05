@@ -1,17 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://java.sun.com/jsf/html"
-        xmlns:c="http://java.sun.com/jsp/jstl/core"
-        xmlns:components="http://java.sun.com/jsf/composite/components"
->
-<head>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<link href="#{request.contextPath}/static/css/main.css" rel="stylesheet"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="${pageContext.request.contextPath}/static/css/bootstrap.css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/static/css/style.css" rel="stylesheet"/>
 </head>
 <body>
+
 <main class="bd-main order-1">
     <div class="bd-intro ps-lg-4">
         <div class="d-md-flex align-items-center justify-content-between">
@@ -29,5 +25,6 @@
         </ul>
     </div>
 </main>
+
 </body>
 </html>
