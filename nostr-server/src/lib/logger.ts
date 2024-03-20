@@ -1,9 +1,9 @@
 import log4js from 'log4js';
 import path from 'path';
 
-const LOG_ROOT_DIR: string = process.env.LOG_ROOT_DIR || './logs';
+const LOG_ROOT_DIR = process.env.LOG_ROOT_DIR || './logs';
 
-const config = {
+const config: log4js.Configuration = {
   appenders: {
     console: { type: 'console' },
     relay: {

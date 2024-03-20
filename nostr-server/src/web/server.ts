@@ -5,7 +5,7 @@ import { WebLogger } from '../lib/logger';
 
 export function startWebServer(port: number): void {
   // Configure server
-  const server: express.Express = express();
+  const server = express();
   server.use(log4js.connectLogger(WebLogger, {}));
 
   // Configure static files

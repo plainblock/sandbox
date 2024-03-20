@@ -6,20 +6,21 @@ import { Event, processClose, processEvent, processReq } from './nip/nip01';
 
 export function startRelayServer(port: number): void {
   // Configure server
-  const server: express.Express = express();
+  const server = express();
 
   // Setup relay server
-  const relay: expressWs.Application = expressWs(server).app;
+  const relay = expressWs(server).app;
   relay.ws('/', (ws, req) => {
+    const ip = req.ip as string;
     ws.on('message', (raw) => {
-      const message: string = raw.toString();
-      RelayLogger.info(`Receive message from ${req.ip}: ${message}`);
-      const processed: string = processMessage(message);
+      const message = raw.toString();
+      RelayLogger.info(`Receive message from ${ip}: ${message}`);
+      const processed = processMessage(message);
       ws.send(processed, (error) => {
         if (error) {
           RelayLogger.error(error.message);
         } else {
-          RelayLogger.info(`Send message to ${req.ip}: ${processed}`);
+          RelayLogger.info(`Send message to ${ip}: ${processed}`);
         }
       });
     });
@@ -31,39 +32,41 @@ export function startRelayServer(port: number): void {
 
 function processMessage(message: string): string {
   // Parse JSON
-  const data: any = JSON.parse(message);
+  const data: any[] = JSON.parse(message); // eslint-disable-line
 
   // Handle invalid format error
-  let error: string;
   if (data.length < 1) {
-    error = 'invalid: message too short';
-    RelayLogger.error(`${error}; message: ${message}`);
-    return `["NOTICE", "${error}"]`;
+    const error = new Error('invalid: message too short');
+    RelayLogger.error(`${error.message}; message: ${message}`);
+    return `["NOTICE", "${error.message}"]`;
   }
 
   // Parse message data
-  let subscribeId: string;
   switch (data[0]) {
-    case 'EVENT':
-      const event: Event = data[1] as Event;
+    case 'EVENT': {
+      const event = data[1] as Event;
       return processEvent(event);
-    case 'REQ':
-      subscribeId = data[1] as string;
+    }
+    case 'REQ': {
+      const subscribeId = data[1] as string;
       const filters: string[] = [];
-      let index: number = 0;
+      let index = 0;
       for (const element of data) {
         if (index > 1) {
-          filters.push(element);
+          filters.push(element as string);
         }
         index++;
       }
       return processReq(subscribeId, filters);
-    case 'CLOSE':
-      subscribeId = data[1] as string;
+    }
+    case 'CLOSE': {
+      const subscribeId = data[1] as string;
       return processClose(subscribeId);
-    default:
-      error = 'invalid: unknown message type';
-      RelayLogger.error(`${error}; message: ${message}`);
-      return `["NOTICE", "${error}"]`;
+    }
+    default: {
+      const error = new Error('invalid: unknown message type');
+      RelayLogger.error(`${error.message}; message: ${message}`);
+      return `["NOTICE", "${error.message}"]`;
+    }
   }
 }
