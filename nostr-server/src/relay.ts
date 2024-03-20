@@ -13,21 +13,31 @@ export function startRelayServer(port: number, logLevel?: string | log4js.Level)
   const relay: expressWs.Application = expressWs(server).app;
   relay.ws("/", (ws, req) => {
     ws.on("message", (msg) => {
+      logger.debug(`Receive ${msg.toString()}`);
       const request = JSON.parse(msg.toString());
-      logger.debug(`Receive ${request}`);
-      if (request[0] === "EVENT") {
-        const response = `["OK", "${request[1].id}", true, ""]`;
-        logger.debug(`Send ${response}`);
-        ws.send(response);
-      } else if (request[0] === "REQ") {
-        const response = `["EOSE", "${request[1].msg}"]`;
-        logger.debug(`Send ${response}`);
-        ws.send(response);
+      let response = `[]`;
+      switch (request[0]) {
+        case "EVENT":
+          response = processEvent(request);
+          break;
+        case "REQ":
+          response = processReq(request);
+          break;
       }
+      logger.debug(`Send ${response}`);
+      ws.send(response);
     });
     logger.info(req);
   });
 
   // Start relay server
   relay.listen(port);
+}
+
+function processEvent(request: any): string {
+  return `["OK", "${request[1].id}", true, ""]`;
+}
+
+function processReq(request: any): string {
+  return `["EOSE", "${request[1].msg}"]`;
 }
