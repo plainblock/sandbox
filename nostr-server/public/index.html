@@ -1,43 +1,51 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8"/>
+  <head>
+    <meta charset="UTF-8" />
     <title>Hello Nostr</title>
-</head>
+  </head>
 
-<script type="text/javascript">
-  const sock = new WebSocket('ws://127.0.0.1:18000');
+  <script type="text/javascript">
+    const sock = new WebSocket('ws://127.0.0.1:18000');
 
-  const EVENT = `["EVENT", { \"id\": \"sample\" }]`
-  const REQ = `["REQ", { \"msg\": \"request\" }]`
+    const EVENT = `["EVENT", { \"id\": \"sample\" }]`;
+    const REQ = `["REQ", "sub1", "filter1", "filter2"]`;
+    const UNKNOWN = `["UNKNOWN"]`;
 
-  sock.addEventListener('open', (e) => {
-    console.log('Socket connect');
-  });
-
-  sock.addEventListener('message', (e) => {
-    console.log(`Receive ${e.data}`);
-  });
-
-  document.addEventListener('DOMContentLoaded', (e) => {
-    document.getElementById('event').addEventListener('click', (e) => {
-      console.log(`Send ${EVENT}`);
-      sock.send(EVENT);
+    sock.addEventListener('open', (e) => {
+      console.log('Socket connect');
     });
-  });
 
-  document.addEventListener('DOMContentLoaded', (e) => {
-    document.getElementById('request').addEventListener('click', (e) => {
-      console.log(`Send ${REQ}`);
-      sock.send(REQ);
+    sock.addEventListener('message', (e) => {
+      console.log(`Receive ${e.data}`);
     });
-  })
-</script>
-</head>
 
-<body>
-<h1>Hello Nostr!</h1>
-<input type="button" id="event" value="EVENT">
-<input type="button" id="request" value="REQUEST">
-</body>
+    document.addEventListener('DOMContentLoaded', (e) => {
+      document.getElementById('event').addEventListener('click', (e) => {
+        console.log(`Send ${EVENT}`);
+        sock.send(EVENT);
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', (e) => {
+      document.getElementById('request').addEventListener('click', (e) => {
+        console.log(`Send ${REQ}`);
+        sock.send(REQ);
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', (e) => {
+      document.getElementById('unknown').addEventListener('click', (e) => {
+        console.log(`Send ${UNKNOWN}`);
+        sock.send(UNKNOWN);
+      });
+    });
+  </script>
+
+  <body>
+    <h1>Hello Nostr!</h1>
+    <input type="button" id="event" value="EVENT" />
+    <input type="button" id="request" value="REQUEST" />
+    <input type="button" id="unknown" value="UNKNOWN" />
+  </body>
 </html>
