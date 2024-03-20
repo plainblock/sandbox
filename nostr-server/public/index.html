@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello Nostr</title>
+</head>
+
+<script type="text/javascript">
+  const sock = new WebSocket('ws://127.0.0.1:18000');
+
+  const EVENT = `["EVENT", { \"id\": \"sample\" }]`
+  const REQ = `["REQ", { \"msg\": \"request\" }]`
+
+  sock.addEventListener('open', (e) => {
+    console.log('Socket connect');
+  });
+
+  sock.addEventListener('message', (e) => {
+    console.log(`Receive ${e.data}`);
+  });
+
+  document.addEventListener('DOMContentLoaded', (e) => {
+    document.getElementById('event').addEventListener('click', (e) => {
+      console.log(`Send ${EVENT}`);
+      sock.send(EVENT);
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', (e) => {
+    document.getElementById('request').addEventListener('click', (e) => {
+      console.log(`Send ${REQ}`);
+      sock.send(REQ);
+    });
+  })
+</script>
+</head>
+
+<body>
+<h1>Hello Nostr!</h1>
+<input type="button" id="event" value="EVENT">
+<input type="button" id="request" value="REQUEST">
+</body>
+</html>

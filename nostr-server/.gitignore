@@ -1,0 +1,52 @@
+### Dependencies ###
+node_modules/
+.pnp/
+.pnp.js
+
+### Testing ###
+coverage/
+!**/src/**/coverage/
+
+### Production ###
+build/
+dist/
+!**/src/**/build/
+!**/src/**/dist/
+
+### Enviromnent ###
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+### Log ###
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.metadata/
+.project
+.settings
+.springBeans
+.sts4-cache
+Servers/
+
+### VS Code ###
+.vscode/
+
+### Windows ###
+Thumbs.db
+
+### Mac OS ###
+.DS_Store

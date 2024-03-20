@@ -1,0 +1,12 @@
+### Artifacts ###
+build
+coverage
+doc
+
+### Images ###
+*.gif
+*.ico
+*.jpg
+*.jpeg
+*.png
+*.svg
