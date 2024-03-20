@@ -1,5 +1,4 @@
 import express from "express";
-import fs from "fs";
 import log4js from "log4js";
 
 export function startWebServer(port: number, logLevel?: string | log4js.Level): void {
@@ -9,14 +8,9 @@ export function startWebServer(port: number, logLevel?: string | log4js.Level): 
   logLevel ? (logger.level = logLevel) : (logger.level = log4js.levels.DEBUG);
   server.use(log4js.connectLogger(logger, {}));
 
-  // Setup Web server
-  server.get("/", (req, res) => {
-    fs.readFile("./public/index.html", (err, data) => {
-      res.writeHead(200, { "Content-Type": "text/html" });
-      res.write(data);
-      res.end();
-    });
-  });
+  // Configure static files
+  server.use(express.static('public'));
 
+  // Start web server
   server.listen(port);
 }
