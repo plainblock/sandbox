@@ -8,14 +8,14 @@ def load_prompt(positive_file, negative_file):
         if len(line) == 0:
             positive = "a professional photograph of an astronaut riding a horse"
         else:
-            positive = f.readlines()[0]
+            positive = line[0]
 
     with open(negative_file) as f:
         line = f.readline()
         if len(line) == 0:
             negative = ""
         else:
-            negative = f.readlines()[0]
+            negative = line[0]
 
     return positive, negative
 
