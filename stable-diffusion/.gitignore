@@ -166,3 +166,4 @@ token.txt
 positive-prompt.txt
 negative-prompt.txt
 *.png
+*.safetensors

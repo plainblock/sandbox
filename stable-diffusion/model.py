@@ -1,5 +1,6 @@
+import os
 import torch
-from diffusers import DiffusionPipeline, StableDiffusion3Pipeline
+from diffusers import DiffusionPipeline, StableDiffusionPipeline, StableDiffusion3Pipeline
 from enum import Enum
 
 
@@ -37,8 +38,24 @@ def setup_general_model(model_name, offload=True):
     return pipeline
 
 
-def setup_model(model_type, offload=True):
-    if model_type == ModelType.SDV30.value:
+def setup_safetensors_model(model_name, offload=True):
+    if torch.cuda.is_available():
+        pipeline = StableDiffusionPipeline.from_pretrained(model_name, torch_dtype=torch.float16)
+        if offload:
+            pipeline.enable_model_cpu_offload()
+        else:
+            pipeline.to("cuda")
+
+    else:
+        pipeline = StableDiffusionPipeline.from_pretrained(model_name)
+
+    return pipeline
+
+
+def setup_model(model_name, offload=True):
+    if os.path.isfile(model_name):
+        return setup_safetensors_model(model_name, offload)
+    elif model_name == ModelType.SDV30.value:
         return setup_sd3_model(offload)
     else:
-        return setup_general_model(model_type, offload)
+        return setup_general_model(model_name, offload)

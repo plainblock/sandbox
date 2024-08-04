@@ -4,10 +4,18 @@ from datetime import datetime
 
 def load_prompt(positive_file, negative_file):
     with open(positive_file) as f:
-        positive = f.readlines()[0]
+        line = f.readline()
+        if len(line) == 0:
+            positive = "a professional photograph of an astronaut riding a horse"
+        else:
+            positive = f.readlines()[0]
 
     with open(negative_file) as f:
-        negative = f.readlines()[0]
+        line = f.readline()
+        if len(line) == 0:
+            negative = ""
+        else:
+            negative = f.readlines()[0]
 
     return positive, negative
 
