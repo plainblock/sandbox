@@ -9,15 +9,16 @@ class ModelType(Enum):
 
 
 def setup_sd3_model(offload=True):
+    model_name = ModelType.SDV30.value
     if torch.cuda.is_available():
-        pipeline = StableDiffusion3Pipeline.from_pretrained(ModelType.SDV30, torch_dtype=torch.float16)
+        pipeline = StableDiffusion3Pipeline.from_pretrained(model_name, torch_dtype=torch.float16)
         if offload:
             pipeline.enable_model_cpu_offload()
         else:
             pipeline.to("cuda")
 
     else:
-        pipeline = StableDiffusion3Pipeline.from_pretrained(ModelType.SDV30)
+        pipeline = StableDiffusion3Pipeline.from_pretrained(model_name)
 
     return pipeline
 
