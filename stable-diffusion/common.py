@@ -1,32 +1,19 @@
-import argparse
 from datetime import datetime
 
 
-def load_args():
-    # Setup parser
-    parser = argparse.ArgumentParser(
-        prog="generate",
-        usage="python generate.py <prompt>",
-        description="sample script.",
-        epilog="end",
-        add_help=True,
-    )
-
-    # Add arguments
-    parser.add_argument("prompt", type=str, help="Prompt")
-    parser.add_argument("-n", "--number", type=int, default=1, help="Number of images to generate")
-    parser.add_argument("-t", "--token", type=str, default="token.txt", help="Token file")
-    parser.add_argument("-m", "--model", type=str, default="gsdf/Counterfeit-V2.5", help="Model name")
-    return parser.parse_args()
+def load_prompt(filename):
+    with open(filename) as f:
+        line = f.readlines()
+        return line[0], line[1]
 
 
-def load_token(filename="token.txt"):
+def load_token(filename):
     with open(filename) as f:
         line = f.readlines()
         return line[0]
 
 
-def generate_images(model, prompt, negative_prompt="", number=1):
+def generate_images(model, prompt, negative_prompt, number):
     for i in range(number):
         image = model(
             prompt=prompt,
