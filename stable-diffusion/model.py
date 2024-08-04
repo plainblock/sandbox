@@ -40,14 +40,14 @@ def setup_general_model(model_name, offload=True):
 
 def setup_safetensors_model(model_name, offload=True):
     if torch.cuda.is_available():
-        pipeline = StableDiffusionPipeline.from_pretrained(model_name, torch_dtype=torch.float16)
+        pipeline = StableDiffusionPipeline.from_single_file(model_name, torch_dtype=torch.float16)
         if offload:
             pipeline.enable_model_cpu_offload()
         else:
             pipeline.to("cuda")
 
     else:
-        pipeline = StableDiffusionPipeline.from_pretrained(model_name)
+        pipeline = StableDiffusionPipeline.from_single_file(model_name)
 
     return pipeline
 
