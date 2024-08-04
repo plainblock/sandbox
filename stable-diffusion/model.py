@@ -1,9 +1,9 @@
 import torch
 from diffusers import DiffusionPipeline, StableDiffusion3Pipeline
-from enum import StrEnum
+from enum import Enum
 
 
-class ModelType(StrEnum):
+class ModelType(Enum):
     SDV30 = "stabilityai/stable-diffusion-3-medium-diffusers"
     CFV25 = "gsdf/Counterfeit-V2.5"
 
@@ -37,7 +37,7 @@ def setup_general_model(model_name, offload=True):
 
 
 def setup_model(model_type, offload=True):
-    if model_type == ModelType.SDV30:
+    if model_type == ModelType.SDV30.value:
         return setup_sd3_model(offload)
     else:
         return setup_general_model(model_type, offload)

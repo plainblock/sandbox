@@ -162,6 +162,7 @@ cython_debug/
 .idea/
 
 # Other
-prompt.txt
 token.txt
+positive-prompt.txt
+negative-prompt.txt
 *.png
