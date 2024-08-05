@@ -22,8 +22,8 @@ def load_prompt(positive_file, negative_file):
 
 def load_token(filename):
     with open(filename) as f:
-        line = f.readlines()
-        return line[0]
+        line = f.readline()
+        return line
 
 
 def generate_images(model, prompt, negative_prompt, number, save_dir):
