@@ -42,8 +42,9 @@
 ### Command Options
 
 | Short | Long          | Type | Description                  |
-| :---- | :------------ | :--- | :--------------------------- |
+|:------|:--------------| :--- |:-----------------------------|
 | `-n`  | `--number`    | int  | Number of images to generate |
+| `-s`  | `--steps`     | int  | Number of steps              |
 | `-m`  | `--model`     | str  | Model name                   |
 | `-d`  | `--directory` | str  | Save directory               |
 
