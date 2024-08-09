@@ -26,11 +26,12 @@ def load_token(filename):
         return line
 
 
-def generate_images(model, prompt, negative_prompt, number, save_dir):
+def generate_images(model, prompt, negative_prompt, number, steps, save_dir):
     for i in range(number):
         image = model(
             prompt=prompt,
             negative_prompt=negative_prompt,
+            num_inference_steps=steps
         ).images[0]
 
         file_name = save_dir + "/" + datetime.now().strftime("%Y%m%d%H%M%S") + ".png"

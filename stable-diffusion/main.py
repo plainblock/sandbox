@@ -17,12 +17,14 @@ if __name__ == '__main__':
     # Add arguments
     parser.add_argument("-n", "--number", type=int, default=1, help="Number of images to generate")
     parser.add_argument("-m", "--model", type=str, default="gsdf/Counterfeit-V2.5", help="Model name")
+    parser.add_argument("-s", "--steps", type=int, default=25, help="Number of steps")
     parser.add_argument("-d", "--directory", type=str, default="generate", help="Save directory")
 
     # View arguments
     args = parser.parse_args()
     print("model: {}".format(args.model))
     print("number: {}".format(args.number))
+    print("steps: {}".format(args.steps))
     print("directory: {}".format(args.directory))
 
     # Read prompts
@@ -37,4 +39,4 @@ if __name__ == '__main__':
     # Generate image
     os.makedirs(args.directory, exist_ok=True)
     model = setup_model(args.model)
-    generate_images(model, positive, negative, args.number, args.directory)
+    generate_images(model, positive, negative, args.number, args.steps, args.directory)
