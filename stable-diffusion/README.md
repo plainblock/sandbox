@@ -13,7 +13,7 @@
 
    ```shell
    python -m pip install --upgrade pip
-   pip install torch torchvision torchaudio sentencepiece protobuf peft transformers huggingface accelerate
+   pip install torch torchvision torchaudio diffusers sentencepiece protobuf peft transformers huggingface accelerate
    ```
 
 3. Edit token file.
