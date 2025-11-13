@@ -1,0 +1,5 @@
+rootProject.name = 'spring-multi'
+include 'spring-multi-api'
+include 'spring-multi-batch'
+include 'spring-multi-common'
+include 'spring-multi-db'

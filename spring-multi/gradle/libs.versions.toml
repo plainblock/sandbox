@@ -1,0 +1,26 @@
+[versions]
+spring-boot = '3.5.7'
+spring-mybatis = '3.0.5'
+
+[libraries]
+spring-batch      = { module = 'org.springframework.boot:spring-boot-starter-batch', version.ref = 'spring-boot' }
+spring-config     = { module = 'org.springframework.boot:spring-boot-configuration-processor', version.ref = 'spring-boot' }
+spring-core       = { module = 'org.springframework.boot:spring-boot-starter', version.ref = 'spring-boot' }
+spring-jpa        = { module = 'org.springframework.boot:spring-boot-starter-data-jpa', version.ref = 'spring-boot' }
+spring-mybatis    = { group = 'org.mybatis.spring.boot', name = 'mybatis-spring-boot-starter', version.ref = 'spring-mybatis' }
+spring-validation = { module = 'org.springframework.boot:spring-boot-starter-validation', version.ref = 'spring-boot' }
+spring-web        = { module = 'org.springframework.boot:spring-boot-starter-web', version.ref = 'spring-boot' }
+
+spring-batch-test   = { group = 'org.springframework.batch', name = 'spring-batch-test', version = '5.2.4' }
+spring-core-test    = { module = 'org.springframework.boot:spring-boot-starter-test', version.ref = 'spring-boot' }
+spring-mybatis-test = { group = 'org.mybatis.spring.boot', name = 'mybatis-spring-boot-starter-test', version.ref = 'spring-mybatis' }
+
+db-h2       = { group = 'com.h2database', name = 'h2', version = '2.4.240' }
+db-postgres = { group = 'org.postgresql', name = 'postgresql', version = '42.7.8' }
+
+junit-launcher  = { group = 'org.junit.platform', name = 'junit-platform-launcher', version = '1.14.1' }
+lombok = { group = 'org.projectlombok', name = 'lombok', version = '1.18.42' }
+
+[plugins]
+spring-boot       = { id = 'org.springframework.boot', version.ref = 'spring-boot' }
+spring-dependency = { id = 'io.spring.dependency-management', version = '1.1.7' }

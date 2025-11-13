@@ -1,0 +1,14 @@
+services:
+  topaz:
+    image: multi-db:latest
+    tty: true
+    container_name: sandbox-db
+    restart: always
+    ports:
+      - "127.0.0.1:25432:5432"
+#    volumes:
+#      - multi-data:/var/lib/postgresql/data
+
+#volumes:
+#  multi-data:
+#    external: true
