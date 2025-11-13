@@ -25,7 +25,7 @@ public class EntityRepositoryConfig extends DBConfigBase {
      * @return DataDB接続用DataSourceProperties
      */
     @Bean(name = "entity-db-properties")
-    @ConfigurationProperties(prefix = "sandbox.db.data")
+    @ConfigurationProperties(prefix = "sandbox.db.entity")
     public DataSourceProperties readDatabaseProperties() {
         return new DataSourceProperties();
     }
@@ -37,7 +37,7 @@ public class EntityRepositoryConfig extends DBConfigBase {
      * @return DataDB接続用DataSource
      */
     @Bean(name = "entity-db-source")
-    @ConfigurationProperties(prefix = "sandbox.db.data.hikari")
+    @ConfigurationProperties(prefix = "sandbox.db.entity.hikari")
     public DataSource createDataSource(@Qualifier("entity-db-properties") final DataSourceProperties properties) {
         return dataSource(properties);
     }
