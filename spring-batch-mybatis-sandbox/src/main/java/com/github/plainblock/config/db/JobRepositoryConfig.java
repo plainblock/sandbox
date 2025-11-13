@@ -2,6 +2,9 @@ package com.github.plainblock.config.db;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.batch.core.configuration.support.DefaultBatchConfiguration;
+import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -17,7 +20,7 @@ import javax.sql.DataSource;
  * JobDB接続設定
  */
 @Configuration
-@MapperScan(basePackages = "com.github.plainblock", sqlSessionFactoryRef = "job-db-factory")
+@MapperScan(basePackages = "com.github.plainblock.repository.job", sqlSessionFactoryRef = "job-db-factory")
 public class JobRepositoryConfig extends DBConfigBase {
 
     /**

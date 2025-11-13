@@ -16,15 +16,15 @@ import javax.sql.DataSource;
  * DataDB接続設定
  */
 @Configuration
-@MapperScan(basePackages = "com.github.plainblock", sqlSessionFactoryRef = "data-db-factory")
-public class DataRepositoryConfig extends DBConfigBase {
+@MapperScan(basePackages = "com.github.plainblock.repository.entity", sqlSessionFactoryRef = "entity-db-factory")
+public class EntityRepositoryConfig extends DBConfigBase {
 
     /**
      * 設定ファイルからDataDB接続用設定を読み出す
      *
      * @return DataDB接続用DataSourceProperties
      */
-    @Bean(name = "data-db-properties")
+    @Bean(name = "entity-db-properties")
     @ConfigurationProperties(prefix = "sandbox.db.data")
     public DataSourceProperties readDatabaseProperties() {
         return new DataSourceProperties();
@@ -36,9 +36,9 @@ public class DataRepositoryConfig extends DBConfigBase {
      * @param properties DataDB接続用DataSourceProperties
      * @return DataDB接続用DataSource
      */
-    @Bean(name = "data-db-source")
+    @Bean(name = "entity-db-source")
     @ConfigurationProperties(prefix = "sandbox.db.data.hikari")
-    public DataSource createDataSource(@Qualifier("data-db-properties") final DataSourceProperties properties) {
+    public DataSource createDataSource(@Qualifier("entity-db-properties") final DataSourceProperties properties) {
         return dataSource(properties);
     }
 
@@ -49,8 +49,8 @@ public class DataRepositoryConfig extends DBConfigBase {
      * @return DataDB接続用SqlSessionFactory
      * @throws Exception インスタンス生成失敗時にスロー
      */
-    @Bean(name = "data-db-factory")
-    public SqlSessionFactory createSqlSessionFactory(@Qualifier("data-db-source") DataSource dataSource) throws Exception {
+    @Bean(name = "entity-db-factory")
+    public SqlSessionFactory createSqlSessionFactory(@Qualifier("entity-db-source") DataSource dataSource) throws Exception {
         return sqlSessionFactory(dataSource);
     }
 
@@ -63,12 +63,12 @@ public class DataRepositoryConfig extends DBConfigBase {
      * @param dmlClasspath 初期化用DMLファイルのクラスパ
      * @return DataDB接続用DataSourceInitializer
      */
-    @Bean("data-db-initializer")
+    @Bean("entity-db-initializer")
     public DataSourceInitializer createInitializer(
-            @Qualifier("data-db-properties") final DataSourceProperties properties,
-            @Qualifier("data-db-source") final DataSource source,
-            @Value("${sandbox.db.data.ddl.classpath}") final String ddlClasspath,
-            @Value("${sandbox.db.data.dml.classpath}") final String dmlClasspath
+            @Qualifier("entity-db-properties") final DataSourceProperties properties,
+            @Qualifier("entity-db-source") final DataSource source,
+            @Value("${sandbox.db.entity.ddl.classpath}") final String ddlClasspath,
+            @Value("${sandbox.db.entity.dml.classpath}") final String dmlClasspath
     ) {
         return initializer(source, ddlClasspath, dmlClasspath);
     }
